@@ -5,27 +5,22 @@ import { useNavigate } from "react-router-dom";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/react";
 
-const Contact = ({ result, updateResult }) => {
+const Contact = ({
+	result,
+	updateResult,
+	canSubmit,
+	updateCanSubmit,
+	isLoading,
+	updateIsLoading,
+}) => {
 	const { register, handleSubmit } = useForm();
-	const navigate = useNavigate();
 
 	const onSubmit = async (data) => {
 		updateResult({ ...result, insta: data.insta, phone: data.phone });
-
-		const response = await fetch(
-			"https://be-major-survey-api-server.onrender.com/api/v1/submit",
-			{
-				method: "POST",
-				cache: "no-cache",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(result),
-			}
-		);
-		const resp = await response.json();
-		console.log(resp);
+		updateCanSubmit(true);
+		updateIsLoading(true);
 	};
+
 	return (
 		<VStack h={"100vh"} justifyContent={"center"} paddingX={10}>
 			<VStack alignItems={"flex-start"}>
@@ -58,14 +53,30 @@ const Contact = ({ result, updateResult }) => {
 							{...register("phone")}
 						/>
 					</FormControl>
-					<Button
-						type={"submit"}
-						colorScheme={"linkedin"}
-						size={"md"}
-						placeSelf={"flex-start"}
-					>
-						제출하기 &rarr;
-					</Button>
+					{!isLoading ? (
+						<Button
+							type={"submit"}
+							colorScheme={"linkedin"}
+							size={"md"}
+							placeSelf={"flex-start"}
+						>
+							제출하기 &rarr;
+						</Button>
+					) : null}
+					{isLoading ? (
+						<Button
+							isLoading
+							type={"submit"}
+							loadingText="제출하는 중"
+							colorScheme="linkedin"
+							variant="outline"
+							spinnerPlacement="end"
+							size={"md"}
+							placeSelf={"flex-start"}
+						>
+							제출하기
+						</Button>
+					) : null}
 				</VStack>
 			</VStack>
 		</VStack>

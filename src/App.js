@@ -9,7 +9,9 @@ import Intro1 from "./routes/Intro1";
 import Intro2 from "./routes/Intro2";
 import Feedback from "./routes/Feedback";
 import Contact from "./routes/Contact";
+import Bye from "./routes/Bye";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function App() {
 	const [result, setResult] = useState({
@@ -23,10 +25,46 @@ function App() {
 		insta: "",
 		phone: "",
 	});
+	const [canSubmit, setCanSubmit] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const updateResult = (result) => {
 		setResult(result);
 	};
+
+	const updateCanSubmit = (result) => {
+		setCanSubmit(result);
+	};
+
+	const updateIsLoading = (result) => {
+		setIsLoading(result);
+	};
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const fetchResponse = async () => {
+			const options = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(result),
+			};
+			const response = await fetch(
+				"https://be-major-survey-api-server.onrender.com/api/v1/submit",
+				options
+			);
+			const resp = await response.json();
+			setIsLoading(false);
+			if (resp.result === "200") navigate("/bye");
+			else console.log(resp);
+		};
+		if (canSubmit) {
+			fetchResponse();
+			setCanSubmit(false);
+		}
+	}, [canSubmit]);
 
 	return (
 		<Routes>
@@ -59,8 +97,18 @@ function App() {
 			/>
 			<Route
 				path="/contact"
-				element={<Contact result={result} updateResult={updateResult} />}
+				element={
+					<Contact
+						result={result}
+						updateResult={updateResult}
+						canSubmit={canSubmit}
+						updateCanSubmit={updateCanSubmit}
+						isLoading={isLoading}
+						updateIsLoading={updateIsLoading}
+					/>
+				}
 			/>
+			<Route path="/bye" element={<Bye />} />
 		</Routes>
 	);
 }

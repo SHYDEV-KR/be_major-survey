@@ -43,7 +43,7 @@ const Feedback = ({ result, updateResult }) => {
 							<Input
 								variant="flushed"
 								placeholder="작성하기"
-								{...register("needs", { required: true })}
+								{...register("feedback", { required: true })}
 							/>
 						</FormControl>
 						<Button
