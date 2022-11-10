@@ -23,7 +23,8 @@ const Contact = ({ result, updateResult }) => {
 				body: JSON.stringify(result),
 			}
 		);
-		console.log(response);
+		let data = await response.json();
+		console.log(data);
 	};
 	return (
 		<VStack h={"100vh"} justifyContent={"center"} paddingX={10}>
