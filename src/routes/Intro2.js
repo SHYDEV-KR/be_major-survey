@@ -88,7 +88,7 @@ const Intro2 = () => {
 			</VStack>
 			<VStack>
 				<HStack height={"fit-content"} padding={10}>
-					<Image src="./img/list.png" alt="example list" />
+					<Image src="img/list.png" alt="example list" />
 				</HStack>
 			</VStack>
 		</HStack>

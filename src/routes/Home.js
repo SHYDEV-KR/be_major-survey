@@ -18,7 +18,7 @@ const Home = () => {
 				<Box
 					height={"100%"}
 					width={"100%"}
-					backgroundImage={"./img/brand.png"}
+					backgroundImage={"img/brand.png"}
 					backgroundSize={"cover"}
 					backgroundPosition={"center"}
 					backgroundRepeat={"no-repeat"}

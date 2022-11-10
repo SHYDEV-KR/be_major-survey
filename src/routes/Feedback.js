@@ -59,7 +59,7 @@ const Feedback = ({ result, updateResult }) => {
 			</VStack>
 			<VStack>
 				<HStack height={"fit-content"} padding={10}>
-					<Image src="./img/detail.png" alt="example detail" />
+					<Image src="img/detail.png" alt="example detail" />
 				</HStack>
 			</VStack>
 		</HStack>
