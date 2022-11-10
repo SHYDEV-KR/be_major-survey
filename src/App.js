@@ -28,10 +28,6 @@ function App() {
 		setResult(result);
 	};
 
-	useEffect(() => {
-		console.log(result);
-	}, [result]);
-
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />

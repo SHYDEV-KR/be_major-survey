@@ -9,104 +9,21 @@ const Contact = ({ result, updateResult }) => {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 
-	const options = {
-		method: "POST",
-		headers: {
-			accept: "application/json",
-			"Notion-Version": "2022-06-28",
-			"content-type": "application/json",
-		},
-		body: JSON.stringify({
-			parent: "d235288d826f413f8e363627b5f69ec6",
-			properties: {
-				age: {
-					rich_text: [
-						{
-							text: {
-								content: "10",
-							},
-						},
-					],
-				},
-				gender: {
-					rich_text: [
-						{
-							text: {
-								content: "male",
-							},
-						},
-					],
-				},
-				major: {
-					rich_text: [
-						{
-							text: {
-								content: "10",
-							},
-						},
-					],
-				},
-				career: {
-					rich_text: [
-						{
-							text: {
-								content: "male",
-							},
-						},
-					],
-				},
-				correlation: {
-					rich_text: [
-						{
-							text: {
-								content: "10",
-							},
-						},
-					],
-				},
-				needs: {
-					rich_text: [
-						{
-							text: {
-								content: "male",
-							},
-						},
-					],
-				},
-				feedback: {
-					rich_text: [
-						{
-							text: {
-								content: "10",
-							},
-						},
-					],
-				},
-				insta: {
-					rich_text: [
-						{
-							text: {
-								content: "male",
-							},
-						},
-					],
-				},
-				phone: {
-					rich_text: [
-						{
-							text: {
-								content: "male",
-							},
-						},
-					],
-				},
-			},
-		}),
-	};
-
 	const onSubmit = async (data) => {
 		updateResult({ ...result, insta: data.insta, phone: data.phone });
-		await fetch("https://api.notion.com/v1/pages/", options);
+
+		const response = await fetch(
+			"https://be-major-survey-api-server.onrender.com/api/v1/submit",
+			{
+				method: "POST",
+				cache: "no-cache",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(result),
+			}
+		);
+		console.log(response);
 	};
 	return (
 		<VStack h={"100vh"} justifyContent={"center"} paddingX={10}>
