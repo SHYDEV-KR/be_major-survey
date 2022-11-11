@@ -82,6 +82,7 @@ function App() {
 					duration: 5000,
 					isClosable: true,
 				});
+				window.localStorage.setItem("submit", "true");
 				navigate("/bye");
 			} else {
 				toast({
@@ -124,6 +125,12 @@ function App() {
 		];
 
 		cacheImages(imgs);
+
+		if (window.localStorage.getItem("submit") === "true") {
+			navigate("/bye");
+		} else {
+			navigate("/");
+		}
 	}, []);
 
 	return (
