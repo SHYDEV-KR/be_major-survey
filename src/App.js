@@ -62,7 +62,7 @@ function App() {
 						title: "잠에 든 서버 깨우는 중... 😴🥱 ",
 						description: "잠에서 깨는 즉시 처리할게요!",
 						status: "info",
-						duration: 9000,
+						duration: 12000,
 						isClosable: true,
 					});
 				}

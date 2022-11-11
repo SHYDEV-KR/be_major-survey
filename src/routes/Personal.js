@@ -15,7 +15,7 @@ const Personal = ({ result, updateResult }) => {
 			step: 1,
 			defaultValue: 24,
 			min: 20,
-			max: 40,
+			max: 100,
 		});
 
 	const inc = getIncrementButtonProps();
