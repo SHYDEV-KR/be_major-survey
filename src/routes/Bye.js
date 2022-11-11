@@ -3,7 +3,7 @@ import { Heading, HStack, Text, VStack } from "@chakra-ui/layout";
 const Bye = () => {
 	return (
 		<VStack minH={"100vh"}>
-			<VStack minH={"100vh"} justifyContent={"center"}>
+			<VStack minH={"100vh"} justifyContent={"center"} px={10} maxW={"100vw"}>
 				<Heading textAlign={"center"} pb={"10"}>
 					답변해주셔서 감사합니다. <br />늘 여러분의 커리어를 응원할게요!
 				</Heading>

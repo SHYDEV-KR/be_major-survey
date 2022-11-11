@@ -27,9 +27,6 @@ const Intro2 = () => {
 						<Highlight
 							query="직접 요청할 수 있고"
 							styles={{
-								px: "1",
-								py: "1",
-								bg: "orange.100",
 								fontWeight: "bold",
 							}}
 						>
@@ -40,9 +37,6 @@ const Intro2 = () => {
 						<Highlight
 							query="커리어 선배를 소개받을 수 있고"
 							styles={{
-								px: "1",
-								py: "1",
-								bg: "orange.100",
 								fontWeight: "bold",
 							}}
 						>
@@ -53,9 +47,6 @@ const Intro2 = () => {
 						<Highlight
 							query="부담이 적은"
 							styles={{
-								px: "1",
-								py: "1",
-								bg: "orange.100",
 								fontWeight: "bold",
 							}}
 						>
@@ -66,9 +57,6 @@ const Intro2 = () => {
 						<Highlight
 							query="엄청난 서비스"
 							styles={{
-								px: "1",
-								py: "1",
-								bg: "orange.100",
 								fontWeight: "bold",
 							}}
 						>
