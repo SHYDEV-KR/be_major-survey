@@ -8,17 +8,16 @@ import { Input } from "@chakra-ui/react";
 const Contact = ({
 	result,
 	updateResult,
-	canSubmit,
 	updateCanSubmit,
-	isLoading,
-	updateIsLoading,
+	updateIsSubmitLoading,
+	isSubmitLoading,
 }) => {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = async (data) => {
 		updateResult({ ...result, insta: data.insta, phone: data.phone });
 		updateCanSubmit(true);
-		updateIsLoading(true);
+		updateIsSubmitLoading(true);
 	};
 
 	return (
@@ -55,7 +54,7 @@ const Contact = ({
 							defaultValue={result.phone ?? result.phone}
 						/>
 					</FormControl>
-					{!isLoading ? (
+					{!isSubmitLoading ? (
 						<Button
 							type={"submit"}
 							colorScheme={"linkedin"}
@@ -65,7 +64,7 @@ const Contact = ({
 							제출하기 &rarr;
 						</Button>
 					) : null}
-					{isLoading ? (
+					{isSubmitLoading ? (
 						<Button
 							isLoading
 							type={"submit"}

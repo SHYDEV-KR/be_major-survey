@@ -13,6 +13,7 @@ import Bye from "./routes/Bye";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/toast";
+import { VStack } from "@chakra-ui/layout";
 
 function App() {
 	const [result, setResult] = useState({
@@ -27,7 +28,7 @@ function App() {
 		phone: "",
 	});
 	const [canSubmit, setCanSubmit] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
 	const updateResult = (result) => {
 		setResult(result);
@@ -37,12 +38,14 @@ function App() {
 		setCanSubmit(result);
 	};
 
-	const updateIsLoading = (result) => {
-		setIsLoading(result);
+	const updateIsSubmitLoading = (result) => {
+		setIsSubmitLoading(result);
 	};
 
 	const navigate = useNavigate();
 	const toast = useToast();
+
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchResponse = async () => {
@@ -54,7 +57,7 @@ function App() {
 				body: JSON.stringify(result),
 			};
 			const timeoutId = setTimeout(() => {
-				if (isLoading) {
+				if (isSubmitLoading) {
 					toast({
 						title: "서버 잠에서 깨는 중... 😴🥱 ",
 						description: "잠에서 깨는 즉시 처리할게요!",
@@ -69,7 +72,7 @@ function App() {
 				options
 			);
 			const resp = await response.json();
-			setIsLoading(false);
+			setIsSubmitLoading(false);
 			clearTimeout(timeoutId);
 			if (resp.result === "200") {
 				toast({
@@ -98,50 +101,82 @@ function App() {
 		}
 	}, [canSubmit]);
 
+	const cacheImages = async (srcArray) => {
+		const promises = await srcArray.map((src) => {
+			return new Promise((resolve, reject) => {
+				const img = new Image();
+
+				img.src = src;
+				img.onload = resolve();
+				img.onerror = reject();
+			});
+		});
+		await Promise.all(promises);
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		const imgs = [
+			"img/brand.png",
+			"img/byeImage.png",
+			"img/detail.png",
+			"img/list.png",
+		];
+
+		cacheImages(imgs);
+	}, []);
+
 	return (
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route
-				path="/personal"
-				element={<Personal result={result} updateResult={updateResult} />}
-			/>
-			<Route
-				path="/major"
-				element={<Major result={result} updateResult={updateResult} />}
-			/>
-			<Route
-				path="/career"
-				element={<Career result={result} updateResult={updateResult} />}
-			/>
-			<Route
-				path="/correlation"
-				element={<Correlation result={result} updateResult={updateResult} />}
-			/>
-			<Route
-				path="/needs"
-				element={<Needs result={result} updateResult={updateResult} />}
-			/>
-			<Route path="/intro1" element={<Intro1 />} />
-			<Route path="/intro2" element={<Intro2 />} />
-			<Route
-				path="/feedback"
-				element={<Feedback result={result} updateResult={updateResult} />}
-			/>
-			<Route
-				path="/contact"
-				element={
-					<Contact
-						result={result}
-						updateResult={updateResult}
-						canSubmit={canSubmit}
-						updateCanSubmit={updateCanSubmit}
-						isLoading={isLoading}
-						updateIsLoading={updateIsLoading}
+		<>
+			{isLoading ? (
+				<VStack></VStack>
+			) : (
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route
+						path="/personal"
+						element={<Personal result={result} updateResult={updateResult} />}
 					/>
-				}
-			/>
-			<Route path="/bye" element={<Bye />} />
-		</Routes>
+					<Route
+						path="/major"
+						element={<Major result={result} updateResult={updateResult} />}
+					/>
+					<Route
+						path="/career"
+						element={<Career result={result} updateResult={updateResult} />}
+					/>
+					<Route
+						path="/correlation"
+						element={
+							<Correlation result={result} updateResult={updateResult} />
+						}
+					/>
+					<Route
+						path="/needs"
+						element={<Needs result={result} updateResult={updateResult} />}
+					/>
+					<Route path="/intro1" element={<Intro1 />} />
+					<Route path="/intro2" element={<Intro2 />} />
+					<Route
+						path="/feedback"
+						element={<Feedback result={result} updateResult={updateResult} />}
+					/>
+					<Route
+						path="/contact"
+						element={
+							<Contact
+								result={result}
+								updateResult={updateResult}
+								updateCanSubmit={updateCanSubmit}
+								updateIsSubmitLoading={updateIsSubmitLoading}
+								isSubmitLoading={isSubmitLoading}
+							/>
+						}
+					/>
+					<Route path="/bye" element={<Bye />} />
+				</Routes>
+			)}
+		</>
 	);
 }
 export default App;
