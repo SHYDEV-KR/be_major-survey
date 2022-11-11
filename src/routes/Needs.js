@@ -28,7 +28,7 @@ const Needs = ({ result, updateResult }) => {
 				>
 					<FormControl>
 						<Textarea
-							placeholder="무엇이 있었으면 좋겠다..."
+							placeholder="작성하기"
 							{...register("needs", { required: true })}
 							defaultValue={result.needs ?? result.needs}
 						/>
