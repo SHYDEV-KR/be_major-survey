@@ -12,6 +12,7 @@ import Contact from "./routes/Contact";
 import Bye from "./routes/Bye";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/toast";
 
 function App() {
 	const [result, setResult] = useState({
@@ -41,6 +42,7 @@ function App() {
 	};
 
 	const navigate = useNavigate();
+	const toast = useToast();
 
 	useEffect(() => {
 		const fetchResponse = async () => {
@@ -57,8 +59,16 @@ function App() {
 			);
 			const resp = await response.json();
 			setIsLoading(false);
-			if (resp.result === "200") navigate("/bye");
-			else console.log(resp);
+			if (resp.result === "200") {
+				toast({
+					title: "제출 성공",
+					description: "응답을 잘 받았어요!",
+					status: "success",
+					duration: 5000,
+					isClosable: true,
+				});
+				navigate("/bye");
+			} else console.log(resp);
 		};
 		if (canSubmit) {
 			fetchResponse();
