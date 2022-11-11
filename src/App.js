@@ -118,10 +118,10 @@ function App() {
 
 	useEffect(() => {
 		const imgs = [
-			"img/brand.png",
-			"img/byeImage.png",
-			"img/detail.png",
-			"img/list.png",
+			"be_major-survey/img/brand.png",
+			"be_major-survey/img/byeImage.png",
+			"be_major-survey/img/detail.png",
+			"be_major-survey/img/list.png",
 		];
 
 		cacheImages(imgs);
