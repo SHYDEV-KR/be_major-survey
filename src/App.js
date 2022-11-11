@@ -11,7 +11,7 @@ import Feedback from "./routes/Feedback";
 import Contact from "./routes/Contact";
 import Bye from "./routes/Bye";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/toast";
 import { VStack } from "@chakra-ui/layout";
 
@@ -174,6 +174,7 @@ function App() {
 						}
 					/>
 					<Route path="/bye" element={<Bye />} />
+					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
 			)}
 		</>
