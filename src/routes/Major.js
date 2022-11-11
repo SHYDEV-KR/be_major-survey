@@ -30,8 +30,9 @@ const Major = ({ result, updateResult }) => {
 					<FormControl>
 						<Input
 							variant="flushed"
-							placeholder="전공 및 제2전공"
+							placeholder="ex) 경제학 / 경영학"
 							{...register("major", { required: true })}
+							defaultValue={result.major ?? result.major}
 						/>
 					</FormControl>
 					<Button

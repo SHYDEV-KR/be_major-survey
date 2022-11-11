@@ -49,6 +49,7 @@ const Feedback = ({ result, updateResult }) => {
 								variant="flushed"
 								placeholder="작성하기"
 								{...register("feedback", { required: true })}
+								defaultValue={result.feedback ?? result.feedback}
 							/>
 						</FormControl>
 						<Button

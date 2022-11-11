@@ -31,6 +31,7 @@ const Needs = ({ result, updateResult }) => {
 							variant="flushed"
 							placeholder="무엇이 있었으면 좋겠다..."
 							{...register("needs", { required: true })}
+							defaultValue={result.needs ?? result.needs}
 						/>
 					</FormControl>
 					<Button

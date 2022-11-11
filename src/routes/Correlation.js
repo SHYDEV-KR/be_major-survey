@@ -25,7 +25,7 @@ const Correlation = ({ result, updateResult }) => {
 					minW="100%"
 				>
 					<FormControl>
-						<RadioGroup>
+						<RadioGroup defaultValue={result.correlation ?? result.correlation}>
 							<HStack
 								direction="row"
 								w={"100%"}

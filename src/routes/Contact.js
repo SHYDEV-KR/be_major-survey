@@ -43,6 +43,7 @@ const Contact = ({
 							variant="flushed"
 							placeholder="인스타그램 계정"
 							{...register("insta")}
+							defaultValue={result.insta ?? result.insta}
 						/>
 					</FormControl>
 					<FormControl>
@@ -51,6 +52,7 @@ const Contact = ({
 							variant="flushed"
 							placeholder="010-0000-0000"
 							{...register("phone")}
+							defaultValue={result.phone ?? result.phone}
 						/>
 					</FormControl>
 					{!isLoading ? (

@@ -33,6 +33,7 @@ const Career = ({ result, updateResult }) => {
 							variant="flushed"
 							placeholder="분야, 취업유형, 직군 등등"
 							{...register("career", { required: true })}
+							defaultValue={result.career ?? result.career}
 						/>
 					</FormControl>
 					<Button

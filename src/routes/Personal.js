@@ -38,13 +38,17 @@ const Personal = ({ result, updateResult }) => {
 						<FormLabel>나이</FormLabel>
 						<HStack>
 							<Button {...dec}>-</Button>
-							<Input {...input} {...register("age", { required: true })} />
+							<Input
+								{...input}
+								{...register("age", { required: true })}
+								defaultValue={result.age ?? result.age}
+							/>
 							<Button {...inc}>+</Button>
 						</HStack>
 					</FormControl>
 					<FormControl>
 						<FormLabel>성별</FormLabel>
-						<RadioGroup defaultValue="남자">
+						<RadioGroup defaultValue={result.gender ?? result.gender}>
 							<HStack direction="row">
 								<Radio value="남자" {...register("gender", { required: true })}>
 									남자
