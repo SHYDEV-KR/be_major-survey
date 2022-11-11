@@ -53,12 +53,24 @@ function App() {
 				},
 				body: JSON.stringify(result),
 			};
+			const timeoutId = setTimeout(() => {
+				if (isLoading) {
+					toast({
+						title: "서버 잠에서 깨는 중... 😴🥱 ",
+						description: "잠에서 깨는 즉시 처리할게요!",
+						status: "info",
+						duration: 9000,
+						isClosable: true,
+					});
+				}
+			}, 5500);
 			const response = await fetch(
 				"https://be-major-survey-api-server.onrender.com/api/v1/submit",
 				options
 			);
 			const resp = await response.json();
 			setIsLoading(false);
+			clearTimeout(timeoutId);
 			if (resp.result === "200") {
 				toast({
 					title: "제출 성공",
@@ -68,7 +80,17 @@ function App() {
 					isClosable: true,
 				});
 				navigate("/bye");
-			} else console.log(resp);
+			} else {
+				toast({
+					title: "제출 실패",
+					description: "동시 응답이 너무 많은가봐요, 다시 시도해주세요.",
+					status: "error",
+					duration: 5000,
+					isClosable: true,
+				});
+				navigate("/contact");
+				console.log(resp);
+			}
 		};
 		if (canSubmit) {
 			fetchResponse();

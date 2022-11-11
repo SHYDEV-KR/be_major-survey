@@ -26,16 +26,12 @@ const Correlation = ({ result, updateResult }) => {
 				>
 					<FormControl>
 						<RadioGroup defaultValue={result.correlation ?? result.correlation}>
-							<HStack
-								direction="row"
-								w={"100%"}
-								justifyContent={"space-between"}
-							>
+							<VStack w={"100%"} alignItems={"flex-start"}>
 								<Radio
 									value="0"
 									{...register("correlation", { required: true })}
 								>
-									0
+									0 : 전혀 관련 없음
 								</Radio>
 								<Radio
 									value="1"
@@ -65,9 +61,9 @@ const Correlation = ({ result, updateResult }) => {
 									value="5"
 									{...register("correlation", { required: true })}
 								>
-									5
+									5 : 매우 관련 있음
 								</Radio>
-							</HStack>
+							</VStack>
 						</RadioGroup>
 					</FormControl>
 					<Button

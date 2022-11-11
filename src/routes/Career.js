@@ -4,6 +4,7 @@ import { Heading, VStack, Text } from "@chakra-ui/layout";
 import { useNavigate } from "react-router-dom";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/react";
+import { Textarea } from "@chakra-ui/react";
 
 const Career = ({ result, updateResult }) => {
 	const { register, handleSubmit } = useForm();
@@ -29,9 +30,8 @@ const Career = ({ result, updateResult }) => {
 					minW="100%"
 				>
 					<FormControl>
-						<Input
-							variant="flushed"
-							placeholder="분야, 취업유형, 직군 등등"
+						<Textarea
+							placeholder="분야, 취업유형, 직군 등등 자세히 적어주세요!"
 							{...register("career", { required: true })}
 							defaultValue={result.career ?? result.career}
 						/>

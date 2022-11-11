@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Image } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input } from "@chakra-ui/react";
+import { Textarea } from "@chakra-ui/react";
 
 const Feedback = ({ result, updateResult }) => {
 	const { register, handleSubmit } = useForm();
@@ -45,8 +45,7 @@ const Feedback = ({ result, updateResult }) => {
 						minW="100%"
 					>
 						<FormControl>
-							<Input
-								variant="flushed"
+							<Textarea
 								placeholder="작성하기"
 								{...register("feedback", { required: true })}
 								defaultValue={result.feedback ?? result.feedback}

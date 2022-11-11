@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/button";
 import { Heading, VStack, Text } from "@chakra-ui/layout";
 import { useNavigate } from "react-router-dom";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input } from "@chakra-ui/react";
+import { Textarea } from "@chakra-ui/react";
 
 const Needs = ({ result, updateResult }) => {
 	const { register, handleSubmit } = useForm();
@@ -27,8 +27,7 @@ const Needs = ({ result, updateResult }) => {
 					minW="100%"
 				>
 					<FormControl>
-						<Input
-							variant="flushed"
+						<Textarea
 							placeholder="무엇이 있었으면 좋겠다..."
 							{...register("needs", { required: true })}
 							defaultValue={result.needs ?? result.needs}
