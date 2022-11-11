@@ -16,12 +16,17 @@ const Feedback = ({ result, updateResult }) => {
 	return (
 		<HStack
 			display={"grid"}
-			gridTemplateColumns={"repeat(auto-fit, minmax(500px, 1fr));"}
-			gridTemplateRows={"repeat(auto-fit, minmax(50vh, 1fr));"}
+			gridTemplateColumns={"repeat(auto-fit, minmax(370px, 1fr));"}
+			gridTemplateRows={"repeat(auto-fit, minmax(fit-content, 1fr));"}
 			minH={"100vh"}
 			maxW={"100vw"}
 		>
-			<VStack h={"100vh"} justifyContent={"center"} paddingX={10}>
+			<VStack>
+				<HStack height={"fit-content"} padding={10}>
+					<Image src="img/detail.png" alt="example detail" />
+				</HStack>
+			</VStack>
+			<VStack justifyContent={"center"} paddingX={10} pb={20}>
 				<VStack alignItems={"flex-start"}>
 					<Heading size={"md"} pb={5}>
 						커리어 멘토링 펀딩 플랫폼을 만들고 있어요.
@@ -56,11 +61,6 @@ const Feedback = ({ result, updateResult }) => {
 						</Button>
 					</VStack>
 				</VStack>
-			</VStack>
-			<VStack>
-				<HStack height={"fit-content"} padding={10}>
-					<Image src="img/detail.png" alt="example detail" />
-				</HStack>
 			</VStack>
 		</HStack>
 	);

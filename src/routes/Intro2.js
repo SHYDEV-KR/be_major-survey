@@ -8,17 +8,18 @@ const Intro2 = () => {
 	return (
 		<HStack
 			display={"grid"}
-			gridTemplateColumns={"repeat(auto-fit, minmax(500px, 1fr));"}
+			gridTemplateColumns={"repeat(auto-fit, minmax(370px, 1fr));"}
+			gridTemplateRows={"repeat(auto-fit, minmax(fit-content, 1fr));"}
 			minH={"100vh"}
 			maxW={"100vw"}
 		>
 			<VStack>
-				<VStack
-					minH={"100vh"}
-					justifyContent={"center"}
-					spacing={8}
-					paddingX={10}
-				>
+				<HStack height={"fit-content"} padding={10}>
+					<Image src="img/list.png" alt="example list" />
+				</HStack>
+			</VStack>
+			<VStack>
+				<VStack justifyContent={"center"} spacing={8} paddingX={10} pb={"20"}>
 					<Text fontSize={"3xl"} alignSelf={"flex-start"}>
 						그렇다면 혹시,
 					</Text>
@@ -85,11 +86,6 @@ const Intro2 = () => {
 						그게 뭔데요...?
 					</Button>
 				</VStack>
-			</VStack>
-			<VStack>
-				<HStack height={"fit-content"} padding={10}>
-					<Image src="img/list.png" alt="example list" />
-				</HStack>
 			</VStack>
 		</HStack>
 	);

@@ -36,7 +36,7 @@ const Personal = ({ result, updateResult }) => {
 				<VStack spacing={5} as={"form"} onSubmit={handleSubmit(onSubmit)}>
 					<FormControl>
 						<FormLabel>나이</FormLabel>
-						<HStack maxW="320px">
+						<HStack>
 							<Button {...dec}>-</Button>
 							<Input {...input} {...register("age", { required: true })} />
 							<Button {...inc}>+</Button>

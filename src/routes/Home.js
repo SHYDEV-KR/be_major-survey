@@ -9,10 +9,9 @@ const Home = () => {
 	return (
 		<HStack
 			display={"grid"}
-			gridTemplateColumns={"repeat(auto-fit, minmax(500px, 1fr));"}
+			gridTemplateColumns={"repeat(auto-fit, minmax(370px, 1fr));"}
 			gridTemplateRows={"repeat(auto-fit, minmax(50vh, 1fr));"}
 			minH={"100vh"}
-			maxW={"100vw"}
 		>
 			<Box width={"100%"} height={"100%"}>
 				<Box
