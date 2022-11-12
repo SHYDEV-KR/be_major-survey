@@ -14,7 +14,7 @@ const Needs = ({ result, updateResult }) => {
 	};
 	return (
 		<VStack h={"100vh"} justifyContent={"center"} paddingX={10}>
-			<VStack alignItems={"flex-start"}>
+			<VStack alignItems={"flex-start"} maxW={500}>
 				<Heading size={"md"} pb={5}>
 					커리어를 고민하는 과정에서 가장 고민되는 것과 가장 필요한 것이
 					무엇인가요?
