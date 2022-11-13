@@ -8,14 +8,17 @@ import { Input } from "@chakra-ui/input";
 import { Radio, RadioGroup } from "@chakra-ui/react";
 
 const Personal = ({ result, updateResult }) => {
-	const { register, handleSubmit } = useForm();
+	const { register, setValue, handleSubmit } = useForm();
 	const navigate = useNavigate();
 	const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
 		useNumberInput({
 			step: 1,
-			defaultValue: 24,
+			defaultValue: result.age ? result.age : 24,
 			min: 20,
 			max: 100,
+			onChange: (valueAsString, _) => {
+				setValue("age", valueAsString);
+			},
 		});
 
 	const inc = getIncrementButtonProps();
@@ -38,11 +41,7 @@ const Personal = ({ result, updateResult }) => {
 						<FormLabel>나이</FormLabel>
 						<HStack>
 							<Button {...dec}>-</Button>
-							<Input
-								{...input}
-								{...register("age", { required: true })}
-								defaultValue={result.age ?? result.age}
-							/>
+							<Input {...input} {...register("age", { required: true })} />
 							<Button {...inc}>+</Button>
 						</HStack>
 					</FormControl>
